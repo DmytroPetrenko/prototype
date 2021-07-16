@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>prototype-methods</title>
+	</head>
+	<body>
+		<script>
+			// ваш код, который добавляет метод dictionary.toString
+			let dictionary = Object.create(null, {
+				toString: {
+					value() {
+						return Object.keys(this).join()
+					},
+				},
+			})
+
+			// добавляем немного данных
+			dictionary.apple = "Apple"
+			dictionary.__proto__ = "test" // здесь __proto__ -- это обычный ключ
+
+			// только apple и __proto__ выведены в цикле
+			for (let key in dictionary) {
+				console.log(key) // "apple", затем "__proto__"
+			}
+
+			// ваш метод toString в действии
+			console.log(dictionary) // "apple,__proto__"
+
+			// ---------------------------------------------------------------
+
+			function Rabbit(name) {
+				this.name = name
+			}
+			Rabbit.prototype.sayHi = function () {
+				alert(this.name)
+			}
+
+			let rabbit = new Rabbit("Rabbit")
+
+			rabbit.sayHi() // Rabbit
+			Rabbit.prototype.sayHi() // undefined
+			Object.getPrototypeOf(rabbit).sayHi() // undefined
+			rabbit.__proto__.sayHi() // undefined
+
+            // В последних трех кейсах мы вызываем метод на прототипе, а в нем имя отсутсвует
+		</script>
+	</body>
+</html>

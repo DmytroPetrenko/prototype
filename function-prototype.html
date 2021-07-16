@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>function-prototype</title>
+	</head>
+	<body>
+		<script>
+			/* Изменяем "prototype" 
+        
+        1. true 
+        2. true // правильный ответ false, но почему? Если prototype использовался только при создании нового объекта, 
+        то почему изменяя его значение у нас меняется значение в уже существующем [[Prototype]]?
+        3. true 
+        4. undefined */
+
+			/* Приведите пример функции-конструктора для объекта obj, с которой такой вызов корректно сработает. 
+        И пример функции-конструктора, с которой такой код поведёт себя неправильно. */
+
+			function dev(name) {
+				this.name = name
+				console.log(name)
+			}
+
+			let obj = new dev("obj1")
+
+			let obj2 = new obj.constructor("obj2")
+
+            // Чтоб не сработало нужно переопределить prototype dev
+		</script>
+	</body>
+</html>
